@@ -15,10 +15,10 @@ jobs:
         projects:
         - aiden_auth
     steps:
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-go@v3
       name: Setup go
       with:
-        go-version: 1.18
+        go-version: 1.19
 
     - uses: actions/checkout@v3
       name: Checkout
