@@ -15,38 +15,38 @@ Citizen.CreateThread(function()
 			if IsPedInAnyVehicle(ped, false) then
 				-- suddenly appeared in a vehicle, possible teleport
 				isInVehicle = true
-                SendNUIMessage({
-                    type = "entered-vehicle"
-                })
+				SendNUIMessage({
+					type = "entered-vehicle"
+				})
 			end
 		elseif isInVehicle then
 			if not IsPedInAnyVehicle(ped, false) or IsPlayerDead(PlayerId()) then
 				-- bye, vehicle
 				isInVehicle = false
-                SendNUIMessage({
-                    type = "left-vehicle"
-                })
-            else
-                -- emit speed
+				SendNUIMessage({
+					type = "left-vehicle"
+				})
+			else
+				-- emit speed
 				local vehicle = GetVehiclePedIsUsing(ped)
-                local gear = GetVehicleCurrentGear(vehicle)
-                local speed = math.floor(GetEntitySpeed(vehicle) * 2.236936)
-                local health = math.floor((GetVehicleEngineHealth(vehicle) + GetVehicleBodyHealth(vehicle)) / 20)
+				local gear = GetVehicleCurrentGear(vehicle)
+				local speed = math.floor(GetEntitySpeed(vehicle) * 2.236936)
+				local health = math.floor((GetVehicleEngineHealth(vehicle) + GetVehicleBodyHealth(vehicle)) / 20)
 				local rpm = math.floor(GetVehicleCurrentRpm(vehicle) * 100)
 				local changed = false
 				local diff = { type = "update-stats" }
 
-                if currentGear ~= gear then
-                    changed = true
-                    currentGear = gear
-                    diff["gear"] = gear
-                end
-
-                if currentSpeed ~= speed then
+				if currentGear ~= gear then
 					changed = true
-                    currentSpeed = speed
+					currentGear = gear
+					diff["gear"] = gear
+				end
+
+				if currentSpeed ~= speed then
+					changed = true
+					currentSpeed = speed
 					diff["speed"] = speed
-                end
+				end
 
 				if currentRPM ~= rpm then
 					changed = true
@@ -54,11 +54,11 @@ Citizen.CreateThread(function()
 					diff["rpm"] = rpm
 				end
 
-                if currentHealth ~= health then
-                    changed = true
-                    currentHealth = health
-                    diff["health"] = health
-                end
+				if currentHealth ~= health then
+					changed = true
+					currentHealth = health
+					diff["health"] = health
+				end
 
 				if changed then
 					SendNUIMessage(diff)

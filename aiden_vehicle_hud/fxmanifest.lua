@@ -8,8 +8,8 @@ version "0.0.1"
 
 client_scripts {
 	'client/main.lua',
-    -- enable this if you want chaos
-    -- 'client/fun.lua'
+	-- enable this if you want chaos
+	-- 'client/fun.lua'
 }
 
 ui_page "dist/index.html"
