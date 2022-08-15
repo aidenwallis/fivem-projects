@@ -23,16 +23,15 @@ jobs:
     - uses: actions/checkout@v3
       name: Checkout
 
-    - uses: golangci/golangci-lint-action@v3
-      name: Lint
-      with:
-        working-directory: ${{matrix.projects}}
-
     - name: Build code
       run: |
         cd ${{matrix.projects}}
-        go mod download
         mkdir go_out
         for CMD in `ls cmd`; do
           go build -o go_out/$CMD cmd/$CMD/main.go
         done
+
+    - uses: golangci/golangci-lint-action@v3
+      name: Lint
+      with:
+        working-directory: ${{matrix.projects}}
