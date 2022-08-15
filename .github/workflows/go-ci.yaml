@@ -1,0 +1,36 @@
+name: Go CI
+
+on: [push]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        projects:
+        - aiden_auth
+    steps:
+    - uses: actions/setup-go@v3
+      name: Setup go
+      with:
+        go-version: 1.19
+
+    - uses: actions/checkout@v3
+      name: Checkout
+
+    - name: Build code
+      run: |
+        cd ${{matrix.projects}}
+        mkdir go_out
+        for pkg in `ls cmd`; do
+          echo "Building $pkg"
+          go build -o go_out/$pkg cmd/$pkg/main.go
+        done
+
+    - uses: golangci/golangci-lint-action@v3
+      name: Lint
+      with:
+        working-directory: ${{matrix.projects}}

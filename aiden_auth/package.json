@@ -7,9 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack watch --mode development",
-    "build": "yarn build:webpack && yarn build:tsc",
-    "build:webpack": "webpack --mode production",
-    "build:tsc": "tsc src/backend/*.ts --outDir dist/backend"
+    "build": "webpack --mode production"
   },
   "dependencies": {
     "node-fetch": "^3.2.10",
