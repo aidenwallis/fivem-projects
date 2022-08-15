@@ -27,8 +27,9 @@ jobs:
       run: |
         cd ${{matrix.projects}}
         mkdir go_out
-        for CMD in `ls cmd`; do
-          go build -o go_out/$CMD cmd/$CMD/main.go
+        for pkg in `ls cmd`; do
+          echo "Building $pkg"
+          go build -o go_out/$pkg cmd/$pkg/main.go
         done
 
     - uses: golangci/golangci-lint-action@v3
