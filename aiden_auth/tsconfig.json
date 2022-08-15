@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["es2017"],
+    "outDir": "dist",
+    "target": "es6",
+    "skipLibCheck": true,
+    "types": [
+      "@citizenfx/client",
+      "@citizenfx/server",
+      "node"
+    ]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

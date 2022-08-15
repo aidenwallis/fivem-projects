@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="container">
+      <div>
+        <span id="speed-meter" class="shadow">0</span>
+      </div>
+      <div class="metric-row">
+        <span class="speed-metric" class="shadow">mph</span>
+        <span id="gear" class="shadow"></span>
+      </div>
+      <div class="progress rpm-progress row">
+        <div id="rpm-meter" class="inner-progress flip"></div>
+      </div>
+      <!-- show this if you want vehicle health -->
+      <div class="row" style="display: none">
+        <div class="progress health-progress">
+          <div id="health-meter" class="inner-progress"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

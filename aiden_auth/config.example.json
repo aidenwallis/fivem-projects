@@ -1,0 +1,22 @@
+{
+  "environment": "production",
+
+  "database": {
+    "url": "root@/fivem_sessions"
+  },
+
+  "servers": {
+    "private": {
+      "transport": "tcp",
+      "addr": ":3341"
+    },
+    "public": {
+      "transport": "tcp",
+      "addr": ":3342"
+    }
+  },
+
+  "sessions": {
+    "lifetime_seconds": 86400
+  }
+}

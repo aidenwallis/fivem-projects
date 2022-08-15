@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --tick-rate: 10ms;
+}
+
+html,
+body {
+  font-family: "Michroma", sans-serif;
+  font-size: 62.5%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#container {
+  position: fixed;
+  left: 32rem;
+  width: 20rem;
+  bottom: 2.5rem;
+  &:not(.show) {
+    display: none;
+  }
+}
+
+span {
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 2px 4px #000;
+}
+
+#speed-meter {
+  font-size: 6rem;
+}
+
+.speed-metric {
+  padding-top: 4px;
+  font-size: 2rem;
+}
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#gear {
+  font-size: 2rem;
+}
+
+.progress {
+  position: relative;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.rpm-progress {
+  width: 20rem;
+  height: 2rem;
+}
+
+.health-progress {
+  width: 50%;
+  height: 20px;
+}
+
+.row {
+  margin-top: 12px;
+}
+
+.inner-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  transition: clip-path var(--tick-rate) linear;
+  will-change: clip-path;
+  background-image: linear-gradient(to right, red, yellow, green);
+}
+
+.flip {
+  background-image: linear-gradient(to left, red, yellow, green);
+}
+
+.gear-change {
+  animation: gear-change-anim 50ms ease-in-out forwards;
+}
+
+@keyframes gear-change-anim {
+  from {
+    color: red;
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  to {
+    color: white;
+    opacity: 1;
+    transform: scale(1);
+  }
+}

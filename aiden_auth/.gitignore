@@ -1,0 +1,10 @@
+node_modules/
+yarn-error.log
+npm-error.log
+dist/
+
+# Use yarn
+package-lock.json
+
+.env
+config.json

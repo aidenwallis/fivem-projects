@@ -1,0 +1,43 @@
+{
+  "name": "fivem-external-authorization",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:aidenwallis/fivem-external-sessions.git",
+  "author": "https://github.com/aidenwallis",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack watch --mode development",
+    "build": "yarn build:webpack && yarn build:tsc",
+    "build:webpack": "webpack --mode production",
+    "build:tsc": "tsc src/backend/*.ts --outDir dist/backend"
+  },
+  "dependencies": {
+    "node-fetch": "^3.2.10",
+    "npm-run-all": "^4.1.5",
+    "pino": "^8.4.0",
+    "pino-pretty": "^9.0.0",
+    "ts-loader": "^9.3.1",
+    "webpack": "^5.74.0"
+  },
+  "engines": {
+    "node": "<17"
+  },
+  "devDependencies": {
+    "@citizenfx/client": "^2.0.5802-1",
+    "@citizenfx/server": "^2.0.5802-1",
+    "@types/node": "^18.7.2",
+    "@types/pino": "^7.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "eslint": "^8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-webpack-plugin": "^3.2.0",
+    "prettier": "^2.7.1",
+    "tsc-watch": "^5.0.3",
+    "typescript": "^4.7.4",
+    "webpack-cli": "^4.10.0"
+  }
+}
