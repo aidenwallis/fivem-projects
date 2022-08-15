@@ -1,0 +1,33 @@
+name: Node.js CI
+
+on:
+- push
+- pull_request
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        projects:
+        - aiden_auth
+        - aiden_vehicle_hud
+    steps:
+    - uses: actions/checkout@v3
+      name: Checkout
+
+    - uses: actions/setup-node@v3
+      name: Setup node
+      with:
+        node-version: 16
+        cache: yarn
+        cache-dependency-path: ${{matrix.projects}}/yarn.lock
+
+    - name: Change directory
+      run: |
+        cd ${{matrix.projects}}
+        yarn
+        yarn build
