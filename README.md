@@ -11,7 +11,7 @@ If you wanted to use one of these resources, I'd recommend adding it to your `se
 You could do this with the following git command:
 
 ```bash
-git clone git@github.com:aidenwallis/aiden_fivem_auth.git [aiden_fivem_projects]
+git clone git@github.com:aidenwallis/fivem-projects.git [aiden_fivem_projects]
 ```
 
 This would clone to a directory called `[aiden_fivem_projects]`. You can then edit your `server.cfg` and `ensure` any module you want to use.
