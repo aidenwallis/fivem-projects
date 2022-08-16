@@ -24,7 +24,8 @@ func RandomToken(length int) (string, error) {
 	return string(bs), nil
 }
 
-func hashToken(token string) string {
+// HashToken hashes a token into a sha256 string
+func HashToken(token string) string {
 	h := sha256.Sum256([]byte(token))
 	return base64.RawURLEncoding.EncodeToString(h[:])
 }

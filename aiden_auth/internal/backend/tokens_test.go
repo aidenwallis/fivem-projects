@@ -25,3 +25,8 @@ func TestRandomToken(t *testing.T) {
 		values[token] = struct{}{}
 	}
 }
+
+func TestHashToken(t *testing.T) {
+	t.Parallel()
+	assert.Equal(t, hashedFakeToken, backend.HashToken(fakeToken))
+}

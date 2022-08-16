@@ -7,7 +7,6 @@ import (
 	"github.com/aidenwallis/fivem-projects/aiden_auth/internal/config"
 	"github.com/aidenwallis/fivem-projects/aiden_auth/internal/db"
 	"github.com/aidenwallis/fivem-projects/aiden_auth/internal/db/models"
-	"go.uber.org/zap"
 )
 
 // Backend represents all functions available from the backend.
@@ -23,10 +22,10 @@ type Backend interface {
 type backendImpl struct {
 	sessionCfg *config.SessionsConfig
 	db         db.DB
-	log        *zap.Logger
+	log        config.Logger
 }
 
-func NewBackend(dbImpl db.DB, log *zap.Logger, sessionCfg *config.SessionsConfig) Backend {
+func NewBackend(dbImpl db.DB, log config.Logger, sessionCfg *config.SessionsConfig) Backend {
 	return &backendImpl{
 		db:         dbImpl,
 		log:        log,
