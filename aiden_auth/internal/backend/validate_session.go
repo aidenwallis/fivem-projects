@@ -9,7 +9,7 @@ import (
 
 // ValidateSession validates that a session exists
 func (b *backendImpl) ValidateSession(ctx context.Context, token string) (*models.Session, error) {
-	session, err := b.db.Session(ctx, hashToken(token))
+	session, err := b.db.Session(ctx, HashToken(token))
 	if err != nil {
 		return nil, errors.Wrap(err, "fetching session")
 	}

@@ -11,18 +11,20 @@ import (
 )
 
 const (
-	sessionLength   = 36
-	sessionAttempts = 10
+	sessionLength = 36
+
+	// SessionAttempts is how many times we attempt to create a session before giving up
+	SessionAttempts = 10
 )
 
-var ErrAttemptsExceeded = fmt.Errorf("could not create a session after %d attempts", sessionAttempts)
+var ErrAttemptsExceeded = fmt.Errorf("could not create a session after %d attempts", SessionAttempts)
 
 // ValidateSession validates that a session exists
 func (b *backendImpl) CreateSession(ctx context.Context, identifiers []string, metadata json.RawMessage) (*models.Session, string, error) {
 	now := time.Now().UTC()
 	expiresAt := now.Add(time.Second * time.Duration(b.sessionCfg.LifetimeSeconds)).UTC()
 
-	for i := 0; i < sessionAttempts; i++ {
+	for i := 0; i < SessionAttempts; i++ {
 		// attempt to create session tokens up to 10 times
 		token, err := RandomToken(sessionLength)
 		if err != nil {
@@ -30,7 +32,7 @@ func (b *backendImpl) CreateSession(ctx context.Context, identifiers []string, m
 		}
 
 		sess := &models.Session{
-			TokenHash: hashToken(token),
+			TokenHash: HashToken(token),
 			Metadata:  string(metadata),
 			CreatedAt: now,
 			ExpiresAt: expiresAt,

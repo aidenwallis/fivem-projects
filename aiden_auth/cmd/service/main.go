@@ -87,7 +87,7 @@ func makeMigration(dbImpl db.DB) {
 	golog.Println("Done.")
 }
 
-func rollback(dbImpl db.DB, log *zap.Logger) {
+func rollback(dbImpl db.DB, log config.Logger) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
 	defer cancel()
 
@@ -100,7 +100,7 @@ func rollback(dbImpl db.DB, log *zap.Logger) {
 	log.Info(utils.Ternary(group.IsZero(), "Nothing to rollback...", fmt.Sprintf("Rolled back %s", group)))
 }
 
-func start(cfg *config.AppConfig, dbImpl db.DB, log *zap.Logger) {
+func start(cfg *config.AppConfig, dbImpl db.DB, log config.Logger) {
 	if err := doMigrate(dbImpl, log); err != nil {
 		log.Fatal("Failed to assert database version", zap.Error(err))
 	}
@@ -149,7 +149,7 @@ func start(cfg *config.AppConfig, dbImpl db.DB, log *zap.Logger) {
 	log.Info("Goodbye!", zap.Int64("shutdown-ms", time.Since(start).Milliseconds()))
 }
 
-func doMigrate(dbImpl db.DB, log *zap.Logger) error {
+func doMigrate(dbImpl db.DB, log config.Logger) error {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
 	defer cancel()
 
@@ -173,7 +173,7 @@ func doMigrate(dbImpl db.DB, log *zap.Logger) error {
 	return nil
 }
 
-func serverFactory(name string, cfg *config.ServerConfig, log *zap.Logger, handler http.Handler) (func(context.Context) error, error) {
+func serverFactory(name string, cfg *config.ServerConfig, log config.Logger, handler http.Handler) (func(context.Context) error, error) {
 	srv := &http.Server{
 		Handler: handler,
 	}

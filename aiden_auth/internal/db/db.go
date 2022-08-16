@@ -11,7 +11,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/uptrace/bun"
 	"github.com/uptrace/bun/dialect/mysqldialect"
-	"go.uber.org/zap"
 )
 
 // DB defines the methods exposed for the database layer.
@@ -28,10 +27,10 @@ type DB interface {
 
 type dbImpl struct {
 	db  *bun.DB
-	log *zap.Logger
+	log config.Logger
 }
 
-func NewDB(cfg *config.DatabaseConfig, log *zap.Logger) (DB, error) {
+func NewDB(cfg *config.DatabaseConfig, log config.Logger) (DB, error) {
 	conn, err := sql.Open("mysql", cfg.URL)
 	if err != nil {
 		return nil, errors.Wrap(err, "connecting to database")

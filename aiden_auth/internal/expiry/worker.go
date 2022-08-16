@@ -4,6 +4,7 @@ import (
 	"context"
 	"time"
 
+	"github.com/aidenwallis/fivem-projects/aiden_auth/internal/config"
 	"github.com/aidenwallis/fivem-projects/aiden_auth/internal/db"
 	"go.uber.org/zap"
 )
@@ -15,11 +16,11 @@ type Worker struct {
 	ctx       context.Context
 	cancelCtx context.CancelFunc
 	db        db.DB
-	log       *zap.Logger
+	log       config.Logger
 }
 
 // NewWorker creates a new instance of worker
-func NewWorker(dbImpl db.DB, log *zap.Logger) *Worker {
+func NewWorker(dbImpl db.DB, log config.Logger) *Worker {
 	ctx, cancel := context.WithCancel(context.Background())
 	return &Worker{
 		ctx:       ctx,

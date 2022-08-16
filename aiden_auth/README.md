@@ -55,3 +55,13 @@ There's a few benefits to this:
 - You can decouple your server-side code from the actual runtime of the server, that means you can deploy and make updates to that service, without any players on your server ever noticing.
 
 - The FiveM main process has a lot going on, especially with a lot of mods, offloading that work (this even gives you the ability to offload to another server entirely!) means you can remove some excess traffic and bring better performance to that very expensive process.
+
+## Developing
+
+### Generating mocks
+
+To generate mocks when you change code, run
+
+```bash
+go generate ./...
+```
