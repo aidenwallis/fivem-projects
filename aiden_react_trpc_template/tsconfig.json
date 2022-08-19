@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["es2017", "dom"],
+    "jsx": "react",
+    "outDir": "dist/server",
+    "target": "ES2017",
+    "skipLibCheck": true,
+    "strict": true,
+    "types": [
+      "node"
+    ]
+  },
+  "include": ["src/server"],
+  "exclude": ["node_modules"]
+}

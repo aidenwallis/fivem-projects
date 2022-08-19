@@ -1,0 +1,16 @@
+{
+  "environment": "development",
+  "port": 3404,
+
+  "database": {
+    "url": "idk man"
+  },
+
+  "auth": {
+    "host": "http://localhost:3342"
+  },
+
+  "trpc": {
+    "host": "http://localhost:3404/trpc"
+  }
+}
