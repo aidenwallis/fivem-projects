@@ -5,12 +5,14 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode production",
+    "lint": "prettier --check src/**/*",
     "start": "webpack watch --mode development"
   },
   "devDependencies": {
     "@types/node": "^18.7.3",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
+    "prettier": "^2.7.1",
     "sass": "^1.54.4",
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",

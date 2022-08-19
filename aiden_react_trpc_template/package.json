@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode production",
+    "lint": "eslint . --ext ts",
     "start": "run-p start:webpack start:tsc start:server",
     "start:webpack": "webpack watch --mode development",
     "start:tsc": "tsc --watch",
