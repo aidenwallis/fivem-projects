@@ -12,7 +12,9 @@ jobs:
       matrix:
         projects:
         - aiden_auth
+        - aiden_react_trpc_template
         - aiden_vehicle_hud
+
     steps:
     - uses: actions/checkout@v3
       name: Checkout
@@ -28,4 +30,5 @@ jobs:
       run: |
         cd ${{matrix.projects}}
         yarn
+        yarn lint
         yarn build
