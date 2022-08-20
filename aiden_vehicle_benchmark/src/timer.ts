@@ -4,7 +4,7 @@ const pad = (v: number) => ("00" + v).slice(-2);
 
 export class TimerController {
   private startedAt = 0;
-  private timer: NodeJS.Timer;
+  private timer: number;
   private started = false;
 
   public constructor(private dom: DOMController) {}
@@ -14,7 +14,7 @@ export class TimerController {
     this.dom.setActiveState(true);
     this.startedAt = Date.now();
     this.tick();
-    this.timer = setInterval(() => this.tick(), 10);
+    this.timer = (setInterval(() => this.tick(), 10) as unknown) as number;
     this.started = true;
   }
 

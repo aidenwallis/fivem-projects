@@ -12,13 +12,12 @@
 
 .value {
     font-size: 1.8rem;
-    color: #eee;
 }
 
 .inactive {
-    color: #DC3545;
+    color: var(--color-inactive);
 }
 
 .active {
-    color: #198754;
+    color: var(--color-active);
 }

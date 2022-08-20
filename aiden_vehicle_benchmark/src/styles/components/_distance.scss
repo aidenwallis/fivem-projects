@@ -1,0 +1,51 @@
+#distance-modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 25rem;
+
+  &:not(.show) {
+    display: none;
+  }
+
+  input[type='range'] {
+    width: 100%;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  button {
+    padding: .8rem 1rem;
+    font-size: inherit;
+    font-style: inherit;
+    color: #fff;
+    border-radius: 5px;
+    border: 0;
+  }
+}
+
+#distance-reset {
+  background-color: var(--color-inactive);
+  &:hover {
+    background-color: var(--color-inactive-hover);
+  }
+  &:active {
+    background-color: var(--color-inactive-active);
+  }
+}
+
+#distance-submit {
+  background-color: var(--color-active);
+  &:hover {
+    background-color: var(--color-active-hover);
+  }
+  &:active {
+    background-color: var(--color-active-active);
+  }
+}

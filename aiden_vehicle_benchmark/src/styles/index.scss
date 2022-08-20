@@ -1,8 +1,27 @@
 @import "./reset";
 
-html, body {
-    font-family: sans-serif;
+:root {
+    --color-active: #198754;
+    --color-active-hover: #{lighten(#198754, 10%)};
+    --color-active-active: #{darken(#198754, 10%)};
+
+    --color-inactive: #DC3545;
+    --color-inactive-hover: #{lighten(#DC3545, 10%)};
+    --color-inactive-active: #{darken(#DC3545, 10%)};
+}
+
+html {
     font-size: 62.5%;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 1.4rem;
+    color: #eee;
+}
+
+.center {
+    text-align: center;
 }
 
 @import "./components/index";

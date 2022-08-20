@@ -36,5 +36,11 @@ window.addEventListener("message", (event) => {
       dom.finish();
       break;
     }
+
+    case "adjust-distance": {
+      dom.setDistanceSlider(event?.data?.distance || 20);
+      dom.showDistanceModal(true);
+      break;
+    }
   }
 });

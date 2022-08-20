@@ -6,31 +6,53 @@ local active = false
 local recording = false
 local blip = nil
 local radialBlip = nil
+local checkpoint = nil
+local distanceThreshold = 20
 
 function addBlip()
 	blip = AddBlipForCoord(initialCoords.x, initialCoords.y, initialCoords.z)
-	radialBlip = AddBlipForRadius(initialCoords.x, initialCoords.y, initialCoords.z, 20.0)
 	SetBlipSprite(blip, 38)
 	SetBlipDisplay(blip, 2)
 	SetBlipScale(blip, 1.0)
 	SetBlipColour(blip, 69)
-	SetBlipColour(radialBlip, 69)
-	SetBlipAlpha(radialBlip, 128)
 	BeginTextCommandSetBlipName("STRING")
 	AddTextComponentString("Complete Benchmark")
 	EndTextCommandSetBlipName(blip)
-end
 
+	radialBlip = AddBlipForRadius(initialCoords.x, initialCoords.y, initialCoords.z, distanceThreshold + 0.0)
+	SetBlipColour(radialBlip, 69)
+	SetBlipAlpha(radialBlip, 128)
+
+	checkpoint = CreateCheckpoint(
+		4,
+		initialCoords.x, -- pos1.x
+		initialCoords.y, -- pos1.y
+		initialCoords.z, -- pos1.z
+		initialCoords.x, -- pos2.x
+		initialCoords.y, -- pos2.y
+		initialCoords.z, -- pos2.z
+		(distanceThreshold * 2) + 0.0,            -- radius
+		120,             -- red
+		255,             -- green
+		120,             -- blue
+		80,              -- opacity
+		0                -- reserved
+	)
+end
 
 function cleanupBlip()
 	if blip ~= nil then
 		RemoveBlip(blip)
+		blip = nil
 	end
 	if radialBlip ~= nil then
 		RemoveBlip(radialBlip)
+		radialBlip = nil
 	end
-	blip = nil
-	radialBlip = nil
+	if checkpoint ~= nil then
+		DeleteCheckpoint(checkpoint)
+		checkpoint = nil
+	end
 end
 
 function uiShow(show)
@@ -101,17 +123,16 @@ function mainTick(ped)
 	end
 
 	if not active then
-		if distance > 20 then
+		if distance > distanceThreshold then
 			active = true
 		end
 		return
 	end
 
-	if distance > 20 then
+	if distance > distanceThreshold then
 		return
 	end
 
-	-- arrived
 	started = false
 	resetState()
 	SendNUIMessage({ type = "finished" })
@@ -135,4 +156,28 @@ RegisterCommand('+benchmark', function()
 	resetState()
 end, false)
 
+RegisterNUICallback('setDistance', function(data, cb)
+	distanceThreshold = data.distance
+	cleanupBlip()
+	addBlip()
+
+	cb({ ok = true })
+end)
+
+RegisterNUICallback('saveDistance', function(_, cb)
+	SetNuiFocus(false, false)
+	cb({ ok = true })
+end)
+
 RegisterKeyMapping('+benchmark', 'Benchmark Vehicle', 'keyboard', 'i')
+
+RegisterCommand('+benchmarkfocus', function()
+	if recording == true then
+		return
+	end
+
+	SendNUIMessage({ type = "adjust-distance", distance = distanceThreshold })
+	SetNuiFocus(true, true)
+end, false)
+
+RegisterKeyMapping('+benchmarkfocus', 'Change benchmark distance', 'keyboard', 'o')

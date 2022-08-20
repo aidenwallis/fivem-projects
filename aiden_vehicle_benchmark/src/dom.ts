@@ -1,10 +1,18 @@
+import { rpc } from "./rpc";
+
 const showClass = "show";
 const activeClass = "active";
+const DEFAULT_DISTANCE = 20;
 
 export class DOMController {
   private container = document.getElementById("container")!;
   private activeState = document.getElementById("active-state")!;
   private currentSpeed = document.getElementById("current-speed")!;
+  private distanceModal = document.getElementById("distance-modal")!;
+  private distanceSlider = document.getElementById("distance-slider")! as HTMLInputElement;
+  private distanceReset = document.getElementById("distance-reset")!;
+  private distanceSubmit = document.getElementById("distance-submit")!;
+  private reminder = document.getElementById("reminder")!;
   private topSpeed = document.getElementById("top-speed")!;
 
   public constructor() {
@@ -17,9 +25,20 @@ export class DOMController {
     if (!this.currentSpeed) {
       throw new Error("current speed node not found");
     }
+    if (!this.distanceModal) {
+      throw new Error("distance modal node not found");
+    }
     if (!this.topSpeed) {
       throw new Error("top speed node not found");
     }
+    if (!this.reminder) {
+      throw new Error("reminder node not found");
+    }
+    if (!this.distanceSubmit) {
+      throw new Error("distance submit node not found");
+    }
+
+    this.registerSubmitHandler();
   }
 
   public setShow(show: boolean) {
@@ -39,7 +58,13 @@ export class DOMController {
   }
 
   public setActiveState(active: boolean) {
-    active ? this.activeState.classList.add(activeClass) : this.activeState.classList.remove(activeClass);
+    if (active) {
+      this.activeState.classList.add(activeClass);
+      this.reminder.classList.remove(showClass);
+    } else {
+      this.activeState.classList.remove(activeClass);
+      this.reminder.classList.add(showClass);
+    }
   }
 
   public reset() {
@@ -50,5 +75,30 @@ export class DOMController {
 
   public finish() {
     this.topSpeed.classList.add(activeClass);
+  }
+
+  public showDistanceModal(show: boolean) {
+    show ? this.distanceModal.classList.add(showClass) : this.distanceModal.classList.remove(showClass);
+  }
+
+  public setDistanceSlider(value: number) {
+    this.distanceSlider.value = value.toString();
+    rpc('setDistance', { distance: this.distanceSlider.valueAsNumber });
+  }
+
+  private registerSubmitHandler() {
+    this.distanceSlider.oninput = () => {
+      this.setDistanceSlider(this.distanceSlider.valueAsNumber);
+    };
+
+    this.distanceReset.onclick = () => {
+      this.setDistanceSlider(DEFAULT_DISTANCE);
+    };
+
+    this.distanceSubmit.onclick = (event) => {
+      event.preventDefault();
+      this.showDistanceModal(false);
+      rpc('saveDistance', {});
+    };
   }
 }
