@@ -1,6 +1,6 @@
 name: Node.js CI
 
-on: [push, pull_request]
+on: [push]
 
 permissions:
   contents: read
@@ -13,6 +13,7 @@ jobs:
         projects:
         - aiden_auth
         - aiden_react_trpc_template
+        - aiden_vehicle_benchmark
         - aiden_vehicle_hud
 
     steps:
