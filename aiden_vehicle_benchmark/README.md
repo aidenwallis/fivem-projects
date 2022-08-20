@@ -2,6 +2,10 @@
 
 Time your laps to benchmark various vehicles in FiveM. Collect the top speed from each attempt you do, and automatically have a stopwatch that will start/stop as you reach the end of your lap.
 
+[Original tweet](https://twitter.com/WallisDev/status/1560822559842746379)
+
+![UI Example](./ui-example.png)
+
 ## Setup
 
 1. Clone directory
