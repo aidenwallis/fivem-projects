@@ -23,7 +23,5 @@ module.exports = {
   resolve: {
     extensions: [".ts"],
   },
-  plugins: [
-    new HTMLWebpackPlugin({ template: path.join(__dirname, "./src/index.html") }),
-  ],
+  plugins: [new HTMLWebpackPlugin({ template: path.join(__dirname, "./src/index.html") })],
 };

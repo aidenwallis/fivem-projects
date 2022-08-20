@@ -4,11 +4,20 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode production",
+    "lint": "eslint . --ext ts",
     "start": "webpack watch --mode development"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
     "css-loader": "^6.7.1",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "prettier": "^2.7.1",
     "sass": "^1.54.5",
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
