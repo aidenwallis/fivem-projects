@@ -4,7 +4,7 @@ Time your laps to benchmark various vehicles in FiveM. Collect the top speed fro
 
 [Original tweet](https://twitter.com/WallisDev/status/1560822559842746379)
 
-![UI Example](./ui-example.png)
+![UI Example](https://i.imgur.com/JhAD7B2.png)
 
 ## Setup
 
