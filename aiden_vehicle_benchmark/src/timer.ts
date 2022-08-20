@@ -14,7 +14,7 @@ export class TimerController {
     this.dom.setActiveState(true);
     this.startedAt = Date.now();
     this.tick();
-    this.timer = (setInterval(() => this.tick(), 10) as unknown) as number;
+    this.timer = setInterval(() => this.tick(), 10) as unknown as number;
     this.started = true;
   }
 

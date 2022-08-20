@@ -83,7 +83,7 @@ export class DOMController {
 
   public setDistanceSlider(value: number) {
     this.distanceSlider.value = value.toString();
-    rpc('setDistance', { distance: this.distanceSlider.valueAsNumber });
+    rpc("setDistance", { distance: this.distanceSlider.valueAsNumber });
   }
 
   private registerSubmitHandler() {
@@ -98,7 +98,7 @@ export class DOMController {
     this.distanceSubmit.onclick = (event) => {
       event.preventDefault();
       this.showDistanceModal(false);
-      rpc('saveDistance', {});
+      rpc("saveDistance", {});
     };
   }
 }
