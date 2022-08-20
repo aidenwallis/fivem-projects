@@ -7,18 +7,31 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="distance-modal" class="block">
+        <input type="range" id="distance-slider" min="5" max="100" step="5">
+        <div>
+            <button id="distance-reset">Reset</button>
+            <button id="distance-submit">Save</button>
+        </div>
+    </div>
+
     <div id="container" class="container">
-        <div class="row">
-            <h3 class="title">Benchmark</h3>
-            <h3 class="inactive value" id="active-state">Inactive</h3>
+        <div class="block center" id="reminder">
+            <strong><em>To toggle distance threshold, press "O"</em></strong>
         </div>
-        <div class="row">
-            <h3 class="title">Current speed</h3>
-            <h3 class="value" id="current-speed">0 mph</h3>
-        </div>
-        <div class="row">
-            <h3 class="title">Top speed</h3>
-            <h3 class="value" id="top-speed">0 mph</h3>
+        <div class="block">
+            <div class="row">
+                <h3 class="title">Benchmark</h3>
+                <h3 class="inactive value" id="active-state">Inactive</h3>
+            </div>
+            <div class="row">
+                <h3 class="title">Current speed</h3>
+                <h3 class="value" id="current-speed">0 mph</h3>
+            </div>
+            <div class="row">
+                <h3 class="title">Top speed</h3>
+                <h3 class="value" id="top-speed">0 mph</h3>
+            </div>
         </div>
     </div>
 </body>

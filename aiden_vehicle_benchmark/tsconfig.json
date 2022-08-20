@@ -4,9 +4,9 @@
     "lib": ["es2017", "dom"],
     "outDir": "dist",
     "target": "es6",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["@citizenfx/client"]
   },
   "include": ["src"],
   "exclude": ["node_modules"]
 }
-  

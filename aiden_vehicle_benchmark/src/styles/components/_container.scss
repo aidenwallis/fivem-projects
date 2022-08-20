@@ -1,16 +1,20 @@
 .container {
-    transition: opacity 150ms ease-in-out;
-    opacity: 1;
-    position: fixed;
-    right: 1rem;
-    bottom: 4rem;
-    background: #1b1d20;
-    border-radius: 5px;
-    padding: 1rem;
-    width: 30rem;
+  transition: opacity 150ms ease-in-out;
+  opacity: 1;
+  position: fixed;
+  right: 1rem;
+  bottom: 4rem;
+  width: 30rem;
+  pointer-events: none;
 
-    &:not(.show) {
-        pointer-events: none;
-        opacity: 0;
-    }
+  &:not(.show) {
+    opacity: 0;
+  }
+}
+
+.block {
+  margin-top: 1.4rem;
+  background: #1b1d20;
+  border-radius: 5px;
+  padding: 1rem;
 }

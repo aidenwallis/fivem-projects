@@ -1,0 +1,11 @@
+#reminder {
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+  transform: translateY(10px);
+  opacity: 0;
+  padding: 1.5rem 1rem;
+
+  &.show {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
